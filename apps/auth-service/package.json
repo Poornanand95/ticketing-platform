@@ -1,0 +1,43 @@
+{
+  "name": "@ticketing/auth-service",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/main.js",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "check-types": "tsc --noEmit",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "seed": "tsx src/scripts/seed.ts",
+    "seed-full": "tsx src/scripts/seed-full.ts",
+    "seed-tickets": "tsx src/scripts/seed-tickets.ts",
+    "seed-all": "tsx src/scripts/seed-all.ts",
+    "setup": "tsx src/scripts/setup.ts",
+    "check-db": "tsx src/scripts/check-db.ts",
+    "fix-db": "tsx src/scripts/fix-db-columns.ts"
+  },
+  "dependencies": {
+    "@ticketing/auth": "workspace:*",
+    "@ticketing/config": "workspace:*",
+    "@ticketing/db": "workspace:*",
+    "@ticketing/logger": "workspace:*",
+    "@ticketing/types": "workspace:*",
+    "drizzle-orm": "^0.44.7",
+    "express": "^4.21.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "nanoid": "^5.0.7"
+  },
+  "devDependencies": {
+    "@workspace/typescript-config": "workspace:*",
+    "@types/express": "^5.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1",
+    "typescript": "5.9.2"
+  }
+}
+
