@@ -1,0 +1,42 @@
+{
+  "name": "@ticketing/api-gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/main.js",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "check-types": "tsc --noEmit",
+    "lint": "biome lint .",
+    "format": "biome format --write ."
+  },
+  "dependencies": {
+    "@ticketing/config": "workspace:*",
+    "@ticketing/logger": "workspace:*",
+    "@ticketing/auth": "workspace:*",
+    "express": "^4.21.1",
+    "cors": "^2.8.5",
+    "http-proxy-middleware": "^3.0.3",
+    "dotenv": "^17.2.3",
+    "redis": "^4.7.0"
+  },
+  "devDependencies": {
+    "@workspace/typescript-config": "workspace:*",
+    "@types/express": "^5.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1",
+    "typescript": "5.9.2"
+  }
+}
+
+
+
+
+
+
+
+
+

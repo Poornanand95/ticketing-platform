@@ -1,0 +1,19 @@
+{
+  "name": "ticketing-platform",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev:all": "concurrently \"pnpm --filter @ticketing/api-gateway dev\" \"pnpm --filter @ticketing/auth-service dev\" \"pnpm --filter @ticketing/ticket-service dev\" \"pnpm --filter @ticketing/notification-service dev\" \"pnpm --filter @ticketing/automation-service dev\" \"pnpm --filter @ticketing/reporting-service dev\"",
+    "dev:frontend": "concurrently \"pnpm --filter @ticketing/agent-console dev\" \"pnpm --filter @ticketing/customer-portal dev\"",
+    "check-db": "cd apps/auth-service && pnpm check-db",
+    "seed": "pnpm --filter @ticketing/auth-service seed",
+    "seed-full": "pnpm --filter @ticketing/auth-service seed-full",
+    "seed-all": "pnpm --filter @ticketing/auth-service seed-all",
+    "setup": "pnpm --filter @ticketing/auth-service setup",
+    "test-automation": "cd apps/automation-service && tsx ../../scripts/test-automation.ts",
+    "test-automation-simple": "cd apps/automation-service && tsx ../../scripts/test-automation-simple.ts"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}

@@ -1,0 +1,36 @@
+FROM node:20-alpine AS base
+
+WORKDIR /app
+
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+COPY packages/typescript-config ./packages/typescript-config
+COPY libs ./libs
+
+FROM base AS dependencies
+
+RUN pnpm install --frozen-lockfile
+
+FROM base AS build
+
+COPY --from=dependencies /app/node_modules ./node_modules
+COPY . .
+
+ARG SERVICE_NAME
+RUN pnpm --filter ${SERVICE_NAME} build
+
+FROM node:20-alpine AS production
+
+WORKDIR /app
+
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+COPY --from=dependencies /app/node_modules ./node_modules
+COPY --from=build /app/apps/${SERVICE_NAME}/dist ./dist
+COPY --from=build /app/apps/${SERVICE_NAME}/package.json ./
+
+EXPOSE 3000
+
+CMD ["node", "dist/main.js"]
+
